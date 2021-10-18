@@ -11,8 +11,8 @@ import java.awt.*;
 
 public class Gui{
   public static JFrame window = new JFrame();
-  public static windowWidth = 400;
-  public static windowLength = 400;
+  public static int windowWidth = 400;
+  public static int windowLength = 400;
 
   public static JPanel startMenu = new JPanel();
   public static JPanel instructMenu = new JPanel();
@@ -30,19 +30,22 @@ public class Gui{
     return panel;
   }
 
-  public static JLabel tag(JPanel panel, String text, int x, int y, int width, int length) {
+  public static JLabel tag(JPanel panel, String text, int x, int y, int fontSize) {
     JLabel label = new JLabel(text, SwingConstants.CENTER);
-    label.setBounds(x, y, width, length);
+    label.setLocation(x, y);
+    label.setFont(new Font("Serif", Font.BOLD, fontSize));
     panel.add(label);
     return label;
   }
 
+  
+
   public static void start(){
     startMenu = panel(window, windowWidth, windowLength);
 
-    startMenu.setBackground(Color.DARK_GREEN);
+    startMenu.setBackground(new Color(0, 125, 0));
 
-    JLabel title = tag(startMenu, "Blackjack", (int)windowWidth/2, 10, (int)windowWidth*0.75, (int)windowLength*0.75);
+    JLabel title = tag(startMenu, "Blackjack", (int)windowWidth/2, 10, 19);
 
     title.setForeground(Color.WHITE);
 
