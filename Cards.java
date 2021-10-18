@@ -9,17 +9,25 @@ public class Cards{
     private int cardValue = 0;
     private int suitValue = 0;
     
-    public int getcardsValue() {
+    public int getcards() {
       cardValue = rand.nextInt(13)+1;
+      suitValue = rand.nextInt(4)+1;
+
+      if (cards[suitValue][cardValue] == 0) {
+        while (true){
+           cardValue = rand.nextInt(13)+1; 
+        }
+      }
+
+      cards[suitValue][cardValue] = 0;
       return cardValue;
     }
 
-    public int getsuitsValue() {
-      suitValue = rand.nextInt(4)+1;
-      return suitValue;
-    }
+   //public int getsuitsValue() {
+   // return suitValue;
+   // }
 
-    public int[][] getCards(int[][] cards){
+    public int[][] resetCards(int[][] cards){
       for (int x = 0; x < 4; x++){
         for (int y= 0; y < 13; y++) {
           cards[x][y] = y+1;

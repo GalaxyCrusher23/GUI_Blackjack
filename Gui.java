@@ -30,8 +30,23 @@ public class Gui{
     return panel;
   }
 
+  public static JLabel tag(JPanel panel, String text, int x, int y, int width, int length) {
+    JLabel label = new JLabel(text, SwingConstants.CENTER);
+    label.setBounds(x, y, width, length);
+    panel.add(label);
+    return label;
+  }
+
   public static void start(){
-    
+    startMenu = panel(window, windowWidth, windowLength);
+
+    startMenu.setBackground(Color.DARK_GREEN);
+
+    JLabel title = tag(startMenu, "Blackjack", (int)windowWidth/2, 10, (int)windowWidth*0.75, (int)windowLength*0.75);
+
+    title.setForeground(Color.WHITE);
+
+    startMenu.setVisible(true);
   }
 
   public static void insturct(){

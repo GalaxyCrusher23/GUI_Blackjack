@@ -1,2 +1,2 @@
-language = "java"
+language = "java11"
 run = "java Main.java"
