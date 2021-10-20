@@ -20,6 +20,7 @@ public class Gui{
   public static JPanel loseMenu = new JPanel();
 
   private static int titlefontSize = 32;
+  private static int namefontSize = 24;
   private static Color light_blue = new Color(100, 100, 255);
   private static Color dark_blue = new Color(0, 0, 125);
 
@@ -82,9 +83,13 @@ public class Gui{
     title.setForeground(Color.WHITE);
     title.setFont(new Font("Serif", Font.BOLD, titlefontSize));
 
-    JButton back = button(instructMenu, "Back", windowWidth-100, windowLength-75, 100, 50);
+    JButton back = button(instructMenu, "Back", 0, 0, 100, 50);
     back.setBackground(dark_blue);
     back.setForeground(Color.WHITE);
+
+    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+50, 100, 50);
+    next.setBackground(dark_blue);
+    next.setForeground(Color.WHITE);
 
     instructMenu.setVisible(true);
   }
@@ -94,6 +99,18 @@ public class Gui{
     gameMenu.setLayout(null);
 
     gameMenu.setBackground(light_blue);
+
+    JButton back = button(gameMenu, "Back", 0, 0, 100, 50);
+    back.setBackground(dark_blue);
+    back.setForeground(Color.WHITE);
+
+    JLabel house = tag(gameMenu, "House", 20, 20, 200, 100);
+    house.setForeground(Color.WHITE);
+    house.setFont(new Font("Serif", Font.PLAIN, namefontSize));
+
+    JLabel user = tag(gameMenu, "User", 20, 150, 200, 100);
+    user.setForeground(Color.WHITE);
+    user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
     gameMenu.setVisible(true);
   }
