@@ -1,19 +1,35 @@
+
 import java.util.Scanner;
 
 public class Player{
-  public int [] playerHand = {0,0,0,0,0};
-  private int playerTotal = 0;
-  private int money;
+  public int [] playerHand;
+  private int playerCount;
+  private double playerBet;
 
-  public Player(int money){
-    this.money = money;
+  public void setHand(int[] hand){
+    playerHand = hand;
   }
 
-  public int getplayerCards(total) {
-    playerTotal += total + Cards.getcards();
-    return playerTotal;
+  public int[] getPlayerHand(){
+    return playerHand;
   }
 
+  public void setCount(int count){
+    playerCount = count;
+  }
+  
+  public int getplayerCount(){
+    return playerCount;
+  }
 
+  public void setplayerCards(){
+    playerHand[playerCount] = Cards.getcards();
+    playerCount++;
+  }
+
+  public int getplayerTotal()
+  {
+    return Arrays.stream(playerHand).sum();
+  }
 }
   

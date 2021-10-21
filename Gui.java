@@ -18,6 +18,7 @@ public class Gui{
   public static JPanel instructMenu = new JPanel();
   public static JPanel gameMenu = new JPanel();
   public static JPanel loseMenu = new JPanel();
+  //public static Paint paint = new Paint();
 
   private static int titlefontSize = 32;
   private static int namefontSize = 24;
@@ -104,6 +105,26 @@ public class Gui{
     back.setBackground(dark_blue);
     back.setForeground(Color.WHITE);
 
+    JButton hit = button(gameMenu, "Hit", windowWidth-100, 20, 100, 50);
+    hit.setBackground(dark_blue);
+    hit.setForeground(Color.WHITE);
+
+    JButton stand = button(gameMenu, "Stand", windowWidth-100, 90, 100, 50);
+    stand.setBackground(dark_blue);
+    stand.setForeground(Color.WHITE);
+
+    JButton forfeit = button(gameMenu, "Forfeit", windowWidth-100, 160, 100, 50);
+    forfeit.setBackground(dark_blue);
+    forfeit.setForeground(Color.WHITE);
+
+    JButton doubleDown = button(gameMenu, "DoubleD", windowWidth-100, 230, 100, 50);
+    doubleDown.setBackground(dark_blue);
+    doubleDown.setForeground(Color.WHITE);
+
+    JTextField bet = new JTextField();
+    bet.setBounds(windowWidth/2, windowLength/2, 100, 25);
+    gameMenu.add(bet);
+
     JLabel house = tag(gameMenu, "House", 20, 20, 200, 100);
     house.setForeground(Color.WHITE);
     house.setFont(new Font("Serif", Font.PLAIN, namefontSize));
@@ -111,6 +132,11 @@ public class Gui{
     JLabel user = tag(gameMenu, "User", 20, 150, 200, 100);
     user.setForeground(Color.WHITE);
     user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
+
+    /*
+    gameMenu.add(paint);
+    paint.drawing();
+    */
 
     gameMenu.setVisible(true);
   }
