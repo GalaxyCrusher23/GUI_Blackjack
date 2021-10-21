@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 */
 
 public class Gui implements ActionListener{
-  public static JFrame window = new JFrame();
+  public static JFrame window = new JFrame("Blackjack");
   public static int windowWidth = 600;
   public static int windowLength = 400;
 
@@ -129,17 +129,19 @@ public class Gui implements ActionListener{
     doubleDown.setBackground(dark_blue);
     doubleDown.setForeground(Color.WHITE);
 
-    JTextField bet = new JTextField();
-    bet.setBounds(windowWidth/2, windowLength/2, 100, 25);
-    gameMenu.add(bet);
+    
 
-    JLabel house = tag(gameMenu, "House", 20, 20, 200, 100);
+    JLabel house = tag(gameMenu, "House:", 20, 20, 200, 100);
     house.setForeground(Color.WHITE);
     house.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
-    JLabel user = tag(gameMenu, "User", 20, 150, 200, 100);
+    JLabel user = tag(gameMenu, "User:", 20, 150, 200, 100);
     user.setForeground(Color.WHITE);
     user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
+
+    JTextField bet = new JTextField();
+    bet.setBounds(windowWidth-150, windowLength-75, 150, 50);
+    gameMenu.add(bet);
 
     /*
     gameMenu.add(paint);

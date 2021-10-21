@@ -91,5 +91,9 @@ public class Game {
     }
   }
 
+  Winner.total(userTotal,houseTotal);
+
+  
+
   
 }
