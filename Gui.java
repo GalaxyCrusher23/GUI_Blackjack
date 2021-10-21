@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /*
 - Start Menu
@@ -9,7 +11,7 @@ import java.awt.*;
 - Lose Screen
 */
 
-public class Gui{
+public class Gui implements ActionListener{
   public static JFrame window = new JFrame();
   public static int windowWidth = 400;
   public static int windowLength = 400;
@@ -24,6 +26,8 @@ public class Gui{
   private static int namefontSize = 24;
   private static Color light_blue = new Color(100, 100, 255);
   private static Color dark_blue = new Color(0, 0, 125);
+
+  public static int screen = 0;
 
 
   public static JPanel panel(JFrame frame, int x, int y) {
@@ -47,7 +51,7 @@ public class Gui{
     JButton button = new JButton(text);
     button.setBounds(x, y, width, height);
     panel.add(button);
-    //button.addActionListener(new GUI());
+    button.addActionListener(new Gui());
     return button;
   }
 
@@ -148,5 +152,28 @@ public class Gui{
     loseMenu.setBackground(light_blue);
 
     loseMenu.setVisible(true);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e){
+    String btxt = e.getActionCommand();
+
+    switch(btxt){
+      case "Play": case "Rules":
+        startMenu.setVisible(false);
+        if(btxt.equals("Play")){
+          screen = 1;
+        } else {
+          screen = 2;
+        }
+        break;
+      case "Back":
+        instructMenu.setVisible(false);
+        gameMenu.setVisible(false);
+        screen = 0;
+        break;
+      default:
+        break;
+    }
   }
 }
