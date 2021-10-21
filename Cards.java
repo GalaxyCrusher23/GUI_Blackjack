@@ -13,10 +13,15 @@ public class Cards{
       cardValue = rand.nextInt(13)+1;
       suitValue = rand.nextInt(4)+1;
 
-      if (cards[suitValue][cardValue] == 0) {
+      if (cards[suitValue][cardValue] == 0) 
+        {
         while (true){
            cardValue = rand.nextInt(13)+1; 
         }
+      }
+
+      if (cardValue == 1 ){
+          cardValue = 11;
       }
 
       cards[suitValue][cardValue] = 0;

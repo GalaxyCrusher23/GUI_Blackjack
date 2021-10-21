@@ -170,15 +170,16 @@ public class Gui implements ActionListener{
         } else {
           screen = 2;
         }
+        Main.gameplay();
         break;
       case "Back":
         instructMenu.setVisible(false);
         gameMenu.setVisible(false);
         screen = 0;
+        Main.gameplay();
         break;
       case "Quit":
         window.dispose();
-        screen = -1;
         break;
       default:
         break;

@@ -2,9 +2,7 @@ import javax.swing.*;
 
 class Main {
   public static void main(String[] args) {
-    while(!(Gui.screen<0)){
-      gameplay();
-    }
+    gameplay();
   }
 
   public static void gameplay(){
@@ -22,4 +20,5 @@ class Main {
         break;
     }
   }
+
 }
