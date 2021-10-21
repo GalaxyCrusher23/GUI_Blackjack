@@ -67,13 +67,17 @@ public class Gui implements ActionListener{
     title.setForeground(Color.WHITE);
     title.setFont(new Font("Serif", Font.BOLD, titlefontSize));
 
-    JButton play = button(startMenu, "Play", windowWidth/2-50, windowLength/2, 100, 50);
+    JButton play = button(startMenu, "Play", windowWidth/4-50, windowLength/2, 100, 50);
     play.setBackground(dark_blue);
     play.setForeground(Color.WHITE);
 
-    JButton rules = button(startMenu, "Rules", windowWidth/2-50, windowLength/2+75, 100, 50);
+    JButton rules = button(startMenu, "Rules", windowWidth/2-50, windowLength/2, 100, 50);
     rules.setBackground(dark_blue);
     rules.setForeground(Color.WHITE);
+
+    JButton quit = button(startMenu, "Quit",(int)(windowWidth*(0.75)-50), windowLength/2, 100, 50);
+    quit.setBackground(dark_blue);
+    quit.setForeground(Color.WHITE);
 
     startMenu.setVisible(true);
   }
@@ -171,6 +175,10 @@ public class Gui implements ActionListener{
         instructMenu.setVisible(false);
         gameMenu.setVisible(false);
         screen = 0;
+        break;
+      case "Quit":
+        window.dispose();
+        screen = -1;
         break;
       default:
         break;
