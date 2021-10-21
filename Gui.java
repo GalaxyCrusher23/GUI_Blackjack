@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class Gui implements ActionListener{
   public static JFrame window = new JFrame();
-  public static int windowWidth = 400;
+  public static int windowWidth = 600;
   public static int windowLength = 400;
 
   public static JPanel startMenu = new JPanel();
