@@ -33,6 +33,7 @@ public class Gui implements ActionListener{
   private static int rulesGap = 25;
 
   public static int screen = 0;
+  private static int instructScreen = 0;
 
 
   public static JPanel panel(JFrame frame, int x, int y) {
@@ -121,6 +122,14 @@ public class Gui implements ActionListener{
     txt5.setForeground(Color.WHITE);
     txt5.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
 
+    if(instructScreen == 1){
+      txt.setVisible(false);
+      txt2.setVisible(false);
+      txt3.setVisible(false);
+      txt4.setVisible(false);
+      txt5.setVisible(false);
+    }
+
     instructMenu.setVisible(true);
   }
 
@@ -194,7 +203,12 @@ public class Gui implements ActionListener{
           screen = 1;
         } else {
           screen = 2;
+          instructScreen = 0;
         }
+        Main.gameplay();
+        break;
+      case "Next":
+        instructScreen = 1;
         Main.gameplay();
         break;
       case "Back":
