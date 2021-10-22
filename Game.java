@@ -1,8 +1,8 @@
 public class Game{
 
   public static int cash = 1000;  
-  public int userTotal;
-  public int houseTotal;
+  public static int userTotal;
+  public static int houseTotal;
   private int userCount;
   private int houseCount;
   public int [] userHand;

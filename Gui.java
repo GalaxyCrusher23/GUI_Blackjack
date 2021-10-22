@@ -129,15 +129,15 @@ public class Gui implements ActionListener{
     doubleDown.setBackground(dark_blue);
     doubleDown.setForeground(Color.WHITE);
 
-    JLabel cash = tag(gameMenu, "Cash: " + Game.cash, 5, windowLength/2, 200, 100);
+    JLabel cash = tag(gameMenu, "Cash: $" + Game.cash, windowWidth/2-150, 0, 200, 50);
     cash.setForeground(Color.WHITE);
     cash.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
-    JLabel house = tag(gameMenu, "House:", 20, 20, 200, 100);
+    JLabel house = tag(gameMenu, "House: " + Game.houseTotal, 20, 20, 200, 100);
     house.setForeground(Color.WHITE);
     house.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
-    JLabel user = tag(gameMenu, "User:", 20, 150, 200, 100);
+    JLabel user = tag(gameMenu, "User: " + Game.userTotal, 20, 150, 200, 100);
     user.setForeground(Color.WHITE);
     user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
