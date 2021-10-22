@@ -24,8 +24,13 @@ public class Gui implements ActionListener{
 
   private static int titlefontSize = 32;
   private static int namefontSize = 24;
+  private static int pgfontSize = 11;
   private static Color light_blue = new Color(100, 100, 255);
   private static Color dark_blue = new Color(0, 0, 125);
+
+  private static int rulesX = 17;
+  private static int rulesY = 50;
+  private static int rulesGap = 25;
 
   public static int screen = 0;
 
@@ -96,9 +101,25 @@ public class Gui implements ActionListener{
     back.setBackground(dark_blue);
     back.setForeground(Color.WHITE);
 
-    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+50, 100, 50);
+    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+75, 100, 50);
     next.setBackground(dark_blue);
     next.setForeground(Color.WHITE);
+
+    JLabel txt = tag(instructMenu, "The player will get two cards face up whilst the house gets two cards as well, but one face down.", rulesX, rulesY, 600, 150);
+    txt.setForeground(Color.WHITE);
+    txt.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt2 = tag(instructMenu, "The player must reach as close to 21 without going over by adding the total of their cards. If the", rulesX, rulesY+rulesGap, 600, 150);
+    txt2.setForeground(Color.WHITE);
+    txt2.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt3 = tag(instructMenu, "player isn’t close to 21, they can receive an additional card via hit. If the player is satisfied with", rulesX, rulesY+(rulesGap*2), 600, 150);
+    txt3.setForeground(Color.WHITE);
+    txt3.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt4 = tag(instructMenu, "their total, they can stand. The winner is determined whether the player’s hand is higher than", rulesX, rulesY+(rulesGap*3), 600, 150);
+    txt4.setForeground(Color.WHITE);
+    txt4.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt5 = tag(instructMenu, "the house’s hand without going over, or busting.", windowWidth/2-150, rulesY+(rulesGap*4), 600, 150);
+    txt5.setForeground(Color.WHITE);
+    txt5.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
 
     instructMenu.setVisible(true);
   }
