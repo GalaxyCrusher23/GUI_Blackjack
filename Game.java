@@ -3,18 +3,34 @@ public class Game{
   public static int cash = 1000;  
   public static int userTotal;
   public static int houseTotal;
-  private int userCount;
-  private int houseCount;
-  public int [] userHand;
-  public int [] houseHand;
-  private boolean userStand;
-  private int userAction = 0;
+  public static int bet = 0;
+  public static int userCount;
+  public static int houseCount;
+  public static int [] userHand = {0,0,0,0,0};
+  public static int [] houseHand = {0,0,0,0,0};
+  public static boolean userStand;
+  public static int userAction = 0;
   
-  Player user = new Player();
-  Player house = new Player();
-  Winner win = new Winner();
+  public static Player user = new Player();
+  public static Player house = new Player();
+  public static Winner win = new Winner();
   
-  private void userHit()
+  public static void setBet(String input)
+  {
+    bet = Integer.parseInt(input);
+  }
+
+  public static int getBet()
+  {
+    return bet;
+  }
+
+  public static void changeCash(int userInputBet)
+  {
+    cash -= userInputBet;
+  }
+
+  public static void userHit()
   {
     user.setHand(userHand);
     user.setCount(userCount);
@@ -24,7 +40,7 @@ public class Game{
     userTotal = user.getPlayerTotal();
   }
 
-  private void houseHit()
+  public static void houseHit()
   {
     house.setHand(houseHand);
     house.setCount(houseCount);
@@ -34,7 +50,7 @@ public class Game{
     houseTotal = house.getPlayerTotal();
   }
 
-  private void resetVar()
+  public static void resetVar()
   {
     for (int x = 0; x < 5; x++){
       userHand[x] = 0;
@@ -45,19 +61,6 @@ public class Game{
     Cards.resetCards();
     userStand = false;
   }
-
-/*
-  private double getuserBet(String userInput)
-  {
-    try
-    {
-      userBet = (double)userInput;
-    }
-    catch (Exception e){
-      System.out.println("Not a valid number.");
-    }
-  }
-  */
 
   //Main Game Loop //call it in main
 
@@ -95,6 +98,9 @@ public class Game{
           }
         }
       }
-      win.total(userTotal,houseTotal);
+      if (win.total(userTotal,houseTotal))
+      {
+        cash += bet*2;
+      }
   }
 }

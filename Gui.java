@@ -20,6 +20,7 @@ public class Gui implements ActionListener{
   public static JPanel instructMenu = new JPanel();
   public static JPanel gameMenu = new JPanel();
   public static JPanel loseMenu = new JPanel();
+  public static JTextField bet = new JTextField();
   //public static Paint paint = new Paint();
 
   private static int titlefontSize = 32;
@@ -34,7 +35,6 @@ public class Gui implements ActionListener{
 
   public static int screen = 0;
   private static int instructScreen = 0;
-
 
   public static JPanel panel(JFrame frame, int x, int y) {
     JPanel panel = new JPanel();
@@ -122,13 +122,13 @@ public class Gui implements ActionListener{
     txt5.setForeground(Color.WHITE);
     txt5.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
 
-    if(instructScreen == 1){
+    /*if(instructScreen == 1){
       txt.setVisible(false);
       txt2.setVisible(false);
       txt3.setVisible(false);
       txt4.setVisible(false);
       txt5.setVisible(false);
-    }
+    }*/
 
     instructMenu.setVisible(true);
   }
@@ -171,7 +171,10 @@ public class Gui implements ActionListener{
     user.setForeground(Color.WHITE);
     user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
-    JTextField bet = new JTextField();
+    JButton enter = button(gameMenu, "Enter", windowWidth/2+75, windowLength-62, 75, 37);
+    enter.setBackground(dark_blue);
+    enter.setForeground(Color.WHITE);
+
     bet.setBounds(windowWidth-150, windowLength-75, 150, 50);
     gameMenu.add(bet);
 
@@ -203,14 +206,24 @@ public class Gui implements ActionListener{
           screen = 1;
         } else {
           screen = 2;
-          instructScreen = 0;
         }
         Main.gameplay();
         break;
-      case "Next":
-        instructScreen = 1;
+      case "Enter":
+        Game.setBet(bet.getText());
+        Game.changeCash(Game.getBet());
+        Game.resetVar();
         Main.gameplay();
         break;
+      case "Hit":
+        Game.userHit();
+        Main.gameplay();
+        break;
+      /*case "Next":
+        startMenu.setVisible(false);
+        instructScreen = 1;
+        Main.gameplay();
+        break;*/
       case "Back":
         instructMenu.setVisible(false);
         gameMenu.setVisible(false);
