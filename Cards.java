@@ -5,11 +5,14 @@ public class Cards{
     //Needs to print the card image!
 
     //maybe an error in the future
-    private int[][] cards = [[1,2,3,4,5,6,7,8,9,10,11,12,13]*4];
-    private int cardValue = 0;
-    private int suitValue = 0;
+
+    private static Random rand = new Random();
     
-    public int getcards() {
+    private static int[][] cards = {{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13}};
+    private static int cardValue = 0;
+    private static int suitValue = 0;
+    
+    public static int getcards() {
       cardValue = rand.nextInt(13)+1;
       suitValue = rand.nextInt(4)+1;
 
@@ -32,7 +35,7 @@ public class Cards{
    // return suitValue;
    // }
 
-    public void resetCards()
+    public static void resetCards()
     {
       for (int x = 0; x < 4; x++)
       {

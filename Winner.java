@@ -1,7 +1,7 @@
 public class Winner{
-  private int uTotal;
-  private int hTotal;
-  private boolean userWon;
+  private static int uTotal;
+  private static int hTotal;
+  private static boolean userWon;
 
   public boolean total(int uTotal, int hTotal){
     this.uTotal = uTotal;
@@ -10,7 +10,7 @@ public class Winner{
     if (uTotal > 21)
     {
       userWon = false;
-    } else if (utotal <= hTotal)
+    } else if (uTotal <= hTotal)
     {
       userWon = false;
     } else {

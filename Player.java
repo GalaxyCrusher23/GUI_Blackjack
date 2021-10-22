@@ -1,12 +1,11 @@
 
 import java.util.Scanner;
-import org.apache.commons.lang3.ArrayUtils;
 import java.util.stream.*;
 
 public class Player
 {
-  public int [] playerHand;
-  private int playerCount;
+  public static int [] playerHand;
+  private static int playerCount;
   private double playerBet;
   private int playerAceIndex;
   private int playerTotal;
@@ -26,41 +25,39 @@ public class Player
     playerCount = count;
   }
   
-  public int getplayerCount()
+  public int getPlayerCount()
   {
     return playerCount;
   }
 
-  public void setplayerCards()
+  public void setPlayerCards()
   {
     playerHand[playerCount] = Cards.getcards();
     playerCount++;
   }
 
-  public int getplayerTotal()
+  public int getPlayerTotal()
   {
     playerTotal = IntStream.of(playerHand).sum();
 
     if (playerTotal > 21)
     {
-      if (checkPlayerAce() == true)
+      checkPlayerAce();
+    }
+    return playerTotal;
+  }
+
+  public void checkPlayerAce()
+  {
+    for (int x = 0; x < 5; x++)
+    {
+      if (playerHand[x] == 11)
       {
-        editPlayerAce();
+        playerHand[x] = 1;
         playerTotal = IntStream.of(playerHand).sum();
+        break;
       }
     }
-    return playerTotal
-  }
-
-  public boolean checkPlayerAce()
-  {
-    return playerHand.contains(11);
-  }
-
-  public void editPlayerAce()
-  {
-    playerAceIndex = ArrayUtils.indexOf(playerHand, 11);
-    playerHand[playerAceIndex] = 1;
   }
 }
   
