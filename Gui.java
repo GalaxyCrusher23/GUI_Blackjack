@@ -197,26 +197,37 @@ public class Gui implements ActionListener{
 
   @Override
   public void actionPerformed(ActionEvent e){
-    String btxt = e.getActionCommand();
 
-    switch(btxt){
+    switch(e.getActionCommand()){
       case "Play": case "Rules":
         startMenu.setVisible(false);
-        if(btxt.equals("Play")){
+        if(e.getActionCommand().equals("Play")){
           Game.resetVar();
           screen = 1;
-        } else {
+        } else if(e.getActionCommand().equals("Rules")){
           screen = 2;
         }
         Main.gameplay();
         break;
+      case "Back":
+        /*instructMenu.setVisible(false);
+        gameMenu.setVisible(false);*/
+        window.remove(instructMenu);
+        window.remove(gameMenu);
+        screen = 0;
+        Main.gameplay();
+        break;
       case "Enter":
+        Game.resetVar();
         Game.setBet(bet.getText());
         Game.changeCash(Game.getBet());
-        Game.resetVar();
         Main.gameplay();
         break;
       case "Hit":
+        if(Game.getBet() == 0){
+          System.out.println("Please enter a bet first.");
+          break;
+        }
         Game.userHit();
         Main.gameplay();
         break;
@@ -232,16 +243,11 @@ public class Gui implements ActionListener{
         instructScreen = 1;
         Main.gameplay();
         break;*/
-      case "Back":
-        instructMenu.setVisible(false);
-        gameMenu.setVisible(false);
-        screen = 0;
-        Main.gameplay();
-        break;
       case "Quit":
         window.dispose();
         break;
       default:
+        System.out.println("Why did this happen?");
         break;
     }
   }
