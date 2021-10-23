@@ -6,10 +6,9 @@ public class Game{
   public static int bet = 0;
   public static int userCount;
   public static int houseCount;
-  public static int [] userHand = {0,0,0,0,0};
-  public static int [] houseHand = {0,0,0,0,0};
+  public static int [] userHand = {0, 0, 0, 0, 0};
+  public static int [] houseHand = {0 ,0 ,0 ,0 ,0};
   public static boolean userStand;
-  public static int userAction = 0;
   
   public static Player user = new Player();
   public static Player house = new Player();
@@ -72,32 +71,7 @@ public class Game{
       userHit();
     }
     houseHit();
-
-    if (!(userTotal > 21) || !(userStand))
-    {
-        while (true)
-        {
-          switch (userAction)
-          {
-          case 1: //hit
-          userHit();
-            break;    
-          case 2: //Stand
-            userStand = true;
-            break;    
-          case 3: //doubleDown
-            userHit();
-            userStand = true;
-            break;    
-          case 4: //Surrender
-            break;    
-          case 5: //Insurance
-            break;
-          default:
-            break;
-          }
-        }
-      }
+    
       if (win.total(userTotal,houseTotal))
       {
         cash += bet*2;

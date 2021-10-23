@@ -203,6 +203,7 @@ public class Gui implements ActionListener{
       case "Play": case "Rules":
         startMenu.setVisible(false);
         if(btxt.equals("Play")){
+          Game.resetVar();
           screen = 1;
         } else {
           screen = 2;
@@ -217,6 +218,13 @@ public class Gui implements ActionListener{
         break;
       case "Hit":
         Game.userHit();
+        Main.gameplay();
+        break;
+      case "Stand":
+        Game.userStand = true;
+        while((Game.houseTotal < 16)){
+          Game.houseHit();
+        }
         Main.gameplay();
         break;
       /*case "Next":

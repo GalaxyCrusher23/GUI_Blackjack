@@ -7,7 +7,6 @@ public class Player
   public static int [] playerHand;
   private static int playerCount;
   private double playerBet;
-  private int playerAceIndex;
   private int playerTotal;
 
   public void setHand(int[] hand)
@@ -27,13 +26,13 @@ public class Player
   
   public int getPlayerCount()
   {
+    playerCount++;
     return playerCount;
   }
 
   public void setPlayerCards()
   {
     playerHand[playerCount] = Cards.getcards();
-    playerCount++;
   }
 
   public int getPlayerTotal()
