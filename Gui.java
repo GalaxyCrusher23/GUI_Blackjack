@@ -27,7 +27,9 @@ public class Gui implements ActionListener{
   private static int namefontSize = 24;
   private static int cardfontSize = 48;
   private static int pgfontSize = 11;
-  private static boolean isBack = true;
+  private static boolean isWork = true;
+  private static boolean hitStand = true;
+  private static boolean forDown = true;
   private static Color light_blue = new Color(100, 100, 255);
   private static Color dark_blue = new Color(0, 0, 125);
   private static Color dark_red = new Color(125, 0, 0);
@@ -40,6 +42,7 @@ public class Gui implements ActionListener{
   private static int cardGap = 80;
 
   public static int screen = 0;
+  private static int instructScreen = 0;
 
   public static JPanel panel(JFrame frame, int x, int y) {
     JPanel panel = new JPanel();
@@ -109,7 +112,7 @@ public class Gui implements ActionListener{
     back.setBackground(dark_blue);
     back.setForeground(Color.WHITE);
 
-    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+75, 100, 50, false);
+    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+75, 100, 50, true);
     next.setBackground(dark_blue);
     next.setForeground(Color.WHITE);
 
@@ -146,30 +149,48 @@ public class Gui implements ActionListener{
 
     gameMenu.setBackground(light_blue);
 
-    JButton back = button(gameMenu, "Back", 0, 0, 100, 50, isBack);
+    JButton back = button(gameMenu, "Back", 0, 0, 100, 50, isWork);
 
-    if(isBack){
+    JButton enter = button(gameMenu, "Enter", windowWidth/2+75, windowLength-62, 75, 37, isWork);
+    
+    if(isWork){
       back.setBackground(dark_blue);
+      enter.setBackground(dark_blue);
     } else {
       back.setBackground(dark_red);
+      enter.setBackground(dark_red);
     }
     back.setForeground(Color.WHITE);
+    enter.setForeground(Color.WHITE);
 
-    JButton hit = button(gameMenu, "Hit", windowWidth-100, 20, 100, 50, true);
-    hit.setBackground(dark_blue);
+    JButton hit = button(gameMenu, "Hit", windowWidth-100, 20, 100, 50, hitStand);
+
+    JButton stand = button(gameMenu, "Stand", windowWidth-100, 90, 100, 50, hitStand);
+
+    if(hitStand){
+      hit.setBackground(dark_blue);
+      stand.setBackground(dark_blue);
+    } else {
+      hit.setBackground(dark_red);
+      stand.setBackground(dark_red);
+    }
+
     hit.setForeground(Color.WHITE);
-
-    JButton stand = button(gameMenu, "Stand", windowWidth-100, 90, 100, 50, true);
-    stand.setBackground(dark_blue);
     stand.setForeground(Color.WHITE);
 
-    JButton forfeit = button(gameMenu, "Forfeit", windowWidth-100, 160, 100, 50, true);
-    forfeit.setBackground(dark_blue);
-    forfeit.setForeground(Color.WHITE);
+    JButton forfeit = button(gameMenu, "Forfeit", windowWidth-100, 160, 100, 50, forDown);
 
-    JButton doubleDown = button(gameMenu, "DoubleD", windowWidth-100, 230, 100, 50, true);
-    doubleDown.setBackground(dark_blue);
+    JButton doubleDown = button(gameMenu, "DoubleD", windowWidth-100, 230, 100, 50, forDown);
+
+    if(forDown){
+      forfeit.setBackground(dark_blue);
+      doubleDown.setBackground(dark_blue);
+    } else {
+      forfeit.setBackground(dark_red);
+      doubleDown.setBackground(dark_red);
+    }
     doubleDown.setForeground(Color.WHITE);
+    forfeit.setForeground(Color.WHITE);
 
     JLabel cash = tag(gameMenu, "Cash: $" + Game.cash, windowWidth/2-150, 0, 200, 50);
     cash.setForeground(Color.WHITE);
@@ -182,10 +203,6 @@ public class Gui implements ActionListener{
     JLabel user = tag(gameMenu, "User: " + Game.userTotal, 20, 150, 200, 100);
     user.setForeground(Color.WHITE);
     user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
-
-    JButton enter = button(gameMenu, "Enter", windowWidth/2+75, windowLength-62, 75, 37, true);
-    enter.setBackground(dark_blue);
-    enter.setForeground(Color.WHITE);
 
     bet.setBounds(windowWidth-150, windowLength-75, 150, 50);
     gameMenu.add(bet);
@@ -230,6 +247,8 @@ public class Gui implements ActionListener{
         window.remove(startMenu);
         if(e.getActionCommand().equals("Play")){
           Game.resetVar();
+          hitStand = false;
+          forDown = false;
           screen = 1;
         } else if(e.getActionCommand().equals("Rules")){
           screen = 2;
@@ -248,7 +267,9 @@ public class Gui implements ActionListener{
         Game.setBet(bet.getText());
         Game.changeCash(Game.getBet());
         Game.dealCards();
-        isBack = false;
+        hitStand = true;
+        forDown = true;
+        isWork = false;
         Main.gameplay();
         break;
       case "Hit":
@@ -257,6 +278,7 @@ public class Gui implements ActionListener{
           System.out.println("Please enter a bet first.");
           break;
         }
+        forDown = false;
         Game.userHit();
         if(Game.userTotal>21 || Game.userCount==5){
           while(Game.houseTotal < 16){
@@ -265,6 +287,8 @@ public class Gui implements ActionListener{
           if(Game.didWin()){
             Game.returnCash(1);
           }
+          hitStand = false;
+          isWork = true;
         }
         Main.gameplay();
         break;
@@ -274,12 +298,15 @@ public class Gui implements ActionListener{
           System.out.println("Please enter a bet first.");
           break;
         }
+        forDown = false;
         while(Game.houseTotal < 16){
           Game.houseHit();
         }
         if(Game.didWin()){
           Game.returnCash(1);
         }
+        hitStand = false;
+        isWork = true;
         Main.gameplay();
         break;
       case "Forfeit":
@@ -288,12 +315,21 @@ public class Gui implements ActionListener{
           System.out.println("Please enter a bet first.");
           break;
         }
+        forDown = false;
+        hitStand = false;
         Game.returnCash(3);
         Game.resetVar();
+        isWork = true;
         Main.gameplay();
         break; 
       case "DoubleD":
         window.remove(gameMenu);
+        if(Game.getBet() == 0){
+          System.out.println("Please enter a bet first.");
+          break;
+        }
+        forDown = false;
+        hitStand = false;
         Game.changeCash(Game.getBet());
         Game.userHit();
         while((Game.houseTotal < 16)){
@@ -302,6 +338,7 @@ public class Gui implements ActionListener{
         if(Game.didWin()){
           Game.returnCash(2);
         }
+        isWork = true;
         Main.gameplay();
         break;
       case "Next":
