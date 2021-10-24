@@ -25,6 +25,7 @@ public class Gui implements ActionListener{
 
   private static int titlefontSize = 32;
   private static int namefontSize = 24;
+  private static int cardfontSize = 48;
   private static int pgfontSize = 11;
   private static Color light_blue = new Color(100, 100, 255);
   private static Color dark_blue = new Color(0, 0, 125);
@@ -32,6 +33,9 @@ public class Gui implements ActionListener{
   private static int rulesX = 17;
   private static int rulesY = 50;
   private static int rulesGap = 25;
+  private static int cardX = 20;
+  private static int cardY = 80;
+  private static int cardGap = 80;
 
   public static int screen = 0;
   private static int instructScreen = 0;
@@ -182,10 +186,23 @@ public class Gui implements ActionListener{
     bet.setBounds(windowWidth-150, windowLength-75, 150, 50);
     gameMenu.add(bet);
 
-    /*
-    gameMenu.add(paint);
-    paint.drawing();
-    */
+    if(Game.houseTotal > 0){
+      JLabel housecardNumber = new JLabel(Integer.toString(Game.houseHand[0]));
+      housecardNumber.setBounds(cardX, cardY, 200, 100);
+      housecardNumber.setForeground(Color.RED);
+      housecardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
+      gameMenu.add(housecardNumber);
+    }
+
+    if(Game.userTotal > 0){
+      for(int i = 0; i < Game.userCount; i++){
+        JLabel usercardNumber = new JLabel(Integer.toString(Game.userHand[i]));
+        usercardNumber.setBounds(cardX+(cardGap*i), cardY+130, 200, 100);
+        usercardNumber.setForeground(Color.RED);
+        usercardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
+        gameMenu.add(usercardNumber);
+      }
+    }
 
     gameMenu.setVisible(true);
   }

@@ -1,4 +1,6 @@
 import java.util.Random;
+import javax.swing.*;
+import java.awt.*;
 
 public class Cards{
 
@@ -28,7 +30,7 @@ public class Cards{
 
       cards[suitValue][cardValue] = 0;
 
-      //cardDrawing();
+      //cardDrawing(cardValue, suitValue);
 
       switch (cardValue)
       {
@@ -59,15 +61,16 @@ public class Cards{
         userDrawCards[i] = new JLabel(Integer.toString(cvalue));
         switch(svalue){
           case 0: case 1:
-            userDrawCards.setForeground(Color.RED);
+            userDrawCards[i].setForeground(Color.RED);
             break;
           case 2: case 3:
-            userDrawCards.setForeground(Color.BLACK);
+            userDrawCards[i].setForeground(Color.BLACK);
             break;
           default:
             break;
         }
         userDrawCards[i].setBounds(cardX+(cardGap*i), cardY+180, 100, 100);
+        userDrawCards[i].setFont(new Font("Serif", Font.PLAIN, 24));
         Gui.gameMenu.add(userDrawCards[i]);
       }
 
