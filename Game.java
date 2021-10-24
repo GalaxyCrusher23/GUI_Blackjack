@@ -11,7 +11,7 @@ public class Game{
   public static int uTotal;
   public static int hTotal;
   public static boolean userWon;
-  public static int dealNumber = 0;
+  public static int dealNumber = 1;
   
   public static Player user = new Player();
   public static Player house = new Player();
@@ -102,6 +102,7 @@ public class Game{
     userCount = 0;
     userTotal = 0;
     houseTotal = 0;
+    dealNumber++;
     Cards.resetCards();
   }
 

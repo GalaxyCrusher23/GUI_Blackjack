@@ -211,6 +211,7 @@ public class Gui implements ActionListener{
       for(int i = 0; i < Game.houseCount; i++){
         JLabel housecardNumber = new JLabel(Integer.toString(Game.houseHand[i]));
         housecardNumber.setBounds(cardX+(cardGap*i), cardY, 200, 100);
+        switch()
         housecardNumber.setForeground(Color.RED);
         housecardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
         gameMenu.add(housecardNumber);

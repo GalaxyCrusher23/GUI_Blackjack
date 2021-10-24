@@ -30,8 +30,6 @@ public class Cards{
 
       cards[suitValue][cardValue] = 0;
 
-      //cardDrawing(cardValue, suitValue);
-
       switch (cardValue)
       {
         case 1:
@@ -48,33 +46,6 @@ public class Cards{
 
       return cardValue;
     }
-
-    /*public static void cardDrawing(int cvalue, int svalue){
-      int cardLimit = 5;
-      int cardX = 20;
-      int cardY = 50;
-      int cardGap = 30;
-      JLabel[] userDrawCards = new JLabel[cardLimit];
-      JLabel[] houseDrawCards = new JLabel[cardLimit];
-      
-      for(int i = 0; i < cardLimit; i++){
-        userDrawCards[i] = new JLabel(Integer.toString(cvalue));
-        switch(svalue){
-          case 0: case 1:
-            userDrawCards[i].setForeground(Color.RED);
-            break;
-          case 2: case 3:
-            userDrawCards[i].setForeground(Color.BLACK);
-            break;
-          default:
-            break;
-        }
-        userDrawCards[i].setBounds(cardX+(cardGap*i), cardY+180, 100, 100);
-        userDrawCards[i].setFont(new Font("Serif", Font.PLAIN, 24));
-        Gui.gameMenu.add(userDrawCards[i]);
-      }
-
-    }*/
 
     public static void resetCards()
     {
