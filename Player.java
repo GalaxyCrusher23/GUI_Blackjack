@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.stream.*;
 
@@ -58,5 +57,5 @@ public class Player
       }
     }
   }
-}
   
+}

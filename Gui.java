@@ -143,6 +143,10 @@ public class Gui implements ActionListener{
     back.setBackground(dark_blue);
     back.setForeground(Color.WHITE);
 
+    if(Game.getBet() != 0){
+      gameMenu.remove(back);
+    }
+
     JButton hit = button(gameMenu, "Hit", windowWidth-100, 20, 100, 50);
     hit.setBackground(dark_blue);
     hit.setForeground(Color.WHITE);
@@ -221,6 +225,7 @@ public class Gui implements ActionListener{
         Game.resetVar();
         Game.setBet(bet.getText());
         Game.changeCash(Game.getBet());
+        Game.dealCards();
         Main.gameplay();
         break;
       case "Hit":
@@ -229,12 +234,46 @@ public class Gui implements ActionListener{
           break;
         }
         Game.userHit();
+        if(Game.userTotal>21 || Game.userCount==5){
+          while(Game.houseTotal < 16){
+            Game.houseHit();
+          }
+          if(Game.didWin()){
+            Game.returnCash(1);
+          }
+        }
         Main.gameplay();
         break;
       case "Stand":
-        Game.userStand = true;
+        if(Game.getBet() == 0){
+          System.out.println("Please enter a bet first.");
+          break;
+        }
+        while(Game.houseTotal < 16){
+          Game.houseHit();
+        }
+        if(Game.didWin()){
+          Game.returnCash(1);
+        }
+        Main.gameplay();
+        break;
+      case "Forfeit":
+        if(Game.getBet() == 0){
+          System.out.println("Please enter a bet first.");
+          break;
+        }
+        Game.returnCash(3);
+        Game.resetVar();
+        Main.gameplay();
+        break; 
+      case "DoubleD":
+        Game.changeCash(Game.getBet());
+        Game.userHit();
         while((Game.houseTotal < 16)){
           Game.houseHit();
+        }
+        if(Game.didWin()){
+          Game.returnCash(2);
         }
         Main.gameplay();
         break;
