@@ -27,8 +27,10 @@ public class Gui implements ActionListener{
   private static int namefontSize = 24;
   private static int cardfontSize = 48;
   private static int pgfontSize = 11;
+  private static boolean isBack = true;
   private static Color light_blue = new Color(100, 100, 255);
   private static Color dark_blue = new Color(0, 0, 125);
+  private static Color dark_red = new Color(125, 0, 0);
 
   private static int rulesX = 17;
   private static int rulesY = 50;
@@ -38,7 +40,6 @@ public class Gui implements ActionListener{
   private static int cardGap = 80;
 
   public static int screen = 0;
-  private static int instructScreen = 0;
 
   public static JPanel panel(JFrame frame, int x, int y) {
     JPanel panel = new JPanel();
@@ -57,11 +58,13 @@ public class Gui implements ActionListener{
     return label;
   }
 
-  public static JButton button(JPanel panel, String text, int x, int y, int width, int height){
+  public static JButton button(JPanel panel, String text, int x, int y, int width, int height, boolean action){
     JButton button = new JButton(text);
     button.setBounds(x, y, width, height);
     panel.add(button);
-    button.addActionListener(new Gui());
+    if(action){
+      button.addActionListener(new Gui());
+    }
     return button;
   }
 
@@ -77,15 +80,15 @@ public class Gui implements ActionListener{
     title.setForeground(Color.WHITE);
     title.setFont(new Font("Serif", Font.BOLD, titlefontSize));
 
-    JButton play = button(startMenu, "Play", windowWidth/4-50, windowLength/2, 100, 50);
+    JButton play = button(startMenu, "Play", windowWidth/4-50, windowLength/2, 100, 50, true);
     play.setBackground(dark_blue);
     play.setForeground(Color.WHITE);
 
-    JButton rules = button(startMenu, "Rules", windowWidth/2-50, windowLength/2, 100, 50);
+    JButton rules = button(startMenu, "Rules", windowWidth/2-50, windowLength/2, 100, 50, true);
     rules.setBackground(dark_blue);
     rules.setForeground(Color.WHITE);
 
-    JButton quit = button(startMenu, "Quit",(int)(windowWidth*(0.75)-50), windowLength/2, 100, 50);
+    JButton quit = button(startMenu, "Quit",(int)(windowWidth*(0.75)-50), windowLength/2, 100, 50, true);
     quit.setBackground(dark_blue);
     quit.setForeground(Color.WHITE);
 
@@ -102,11 +105,11 @@ public class Gui implements ActionListener{
     title.setForeground(Color.WHITE);
     title.setFont(new Font("Serif", Font.BOLD, titlefontSize));
 
-    JButton back = button(instructMenu, "Back", 0, 0, 100, 50);
+    JButton back = button(instructMenu, "Back", 0, 0, 100, 50, true);
     back.setBackground(dark_blue);
     back.setForeground(Color.WHITE);
 
-    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+75, 100, 50);
+    JButton next = button(instructMenu, "Next", windowWidth/2-50, windowLength/2+75, 100, 50, false);
     next.setBackground(dark_blue);
     next.setForeground(Color.WHITE);
 
@@ -126,13 +129,13 @@ public class Gui implements ActionListener{
     txt5.setForeground(Color.WHITE);
     txt5.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
 
-    /*if(instructScreen == 1){
+    if(instructScreen == 1){
       txt.setVisible(false);
       txt2.setVisible(false);
       txt3.setVisible(false);
       txt4.setVisible(false);
       txt5.setVisible(false);
-    }*/
+    }
 
     instructMenu.setVisible(true);
   }
@@ -143,27 +146,28 @@ public class Gui implements ActionListener{
 
     gameMenu.setBackground(light_blue);
 
-    JButton back = button(gameMenu, "Back", 0, 0, 100, 50);
-    back.setBackground(dark_blue);
+    JButton back = button(gameMenu, "Back", 0, 0, 100, 50, isBack);
+
+    if(isBack){
+      back.setBackground(dark_blue);
+    } else {
+      back.setBackground(dark_red);
+    }
     back.setForeground(Color.WHITE);
 
-    if(Game.getBet() != 0){
-      gameMenu.remove(back);
-    }
-
-    JButton hit = button(gameMenu, "Hit", windowWidth-100, 20, 100, 50);
+    JButton hit = button(gameMenu, "Hit", windowWidth-100, 20, 100, 50, true);
     hit.setBackground(dark_blue);
     hit.setForeground(Color.WHITE);
 
-    JButton stand = button(gameMenu, "Stand", windowWidth-100, 90, 100, 50);
+    JButton stand = button(gameMenu, "Stand", windowWidth-100, 90, 100, 50, true);
     stand.setBackground(dark_blue);
     stand.setForeground(Color.WHITE);
 
-    JButton forfeit = button(gameMenu, "Forfeit", windowWidth-100, 160, 100, 50);
+    JButton forfeit = button(gameMenu, "Forfeit", windowWidth-100, 160, 100, 50, true);
     forfeit.setBackground(dark_blue);
     forfeit.setForeground(Color.WHITE);
 
-    JButton doubleDown = button(gameMenu, "DoubleD", windowWidth-100, 230, 100, 50);
+    JButton doubleDown = button(gameMenu, "DoubleD", windowWidth-100, 230, 100, 50, true);
     doubleDown.setBackground(dark_blue);
     doubleDown.setForeground(Color.WHITE);
 
@@ -179,7 +183,7 @@ public class Gui implements ActionListener{
     user.setForeground(Color.WHITE);
     user.setFont(new Font("Serif", Font.PLAIN, namefontSize));
 
-    JButton enter = button(gameMenu, "Enter", windowWidth/2+75, windowLength-62, 75, 37);
+    JButton enter = button(gameMenu, "Enter", windowWidth/2+75, windowLength-62, 75, 37, true);
     enter.setBackground(dark_blue);
     enter.setForeground(Color.WHITE);
 
@@ -187,11 +191,13 @@ public class Gui implements ActionListener{
     gameMenu.add(bet);
 
     if(Game.houseTotal > 0){
-      JLabel housecardNumber = new JLabel(Integer.toString(Game.houseHand[0]));
-      housecardNumber.setBounds(cardX, cardY, 200, 100);
-      housecardNumber.setForeground(Color.RED);
-      housecardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
-      gameMenu.add(housecardNumber);
+      for(int i = 0; i < Game.houseCount; i++){
+        JLabel housecardNumber = new JLabel(Integer.toString(Game.houseHand[i]));
+        housecardNumber.setBounds(cardX+(cardGap*i), cardY, 200, 100);
+        housecardNumber.setForeground(Color.RED);
+        housecardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
+        gameMenu.add(housecardNumber);
+      }
     }
 
     if(Game.userTotal > 0){
@@ -221,7 +227,7 @@ public class Gui implements ActionListener{
 
     switch(e.getActionCommand()){
       case "Play": case "Rules":
-        startMenu.setVisible(false);
+        window.remove(startMenu);
         if(e.getActionCommand().equals("Play")){
           Game.resetVar();
           screen = 1;
@@ -231,21 +237,22 @@ public class Gui implements ActionListener{
         Main.gameplay();
         break;
       case "Back":
-        /*instructMenu.setVisible(false);
-        gameMenu.setVisible(false);*/
         window.remove(instructMenu);
         window.remove(gameMenu);
         screen = 0;
         Main.gameplay();
         break;
       case "Enter":
+        window.remove(gameMenu);
         Game.resetVar();
         Game.setBet(bet.getText());
         Game.changeCash(Game.getBet());
         Game.dealCards();
+        isBack = false;
         Main.gameplay();
         break;
       case "Hit":
+        window.remove(gameMenu);
         if(Game.getBet() == 0){
           System.out.println("Please enter a bet first.");
           break;
@@ -262,6 +269,7 @@ public class Gui implements ActionListener{
         Main.gameplay();
         break;
       case "Stand":
+        window.remove(gameMenu);
         if(Game.getBet() == 0){
           System.out.println("Please enter a bet first.");
           break;
@@ -275,6 +283,7 @@ public class Gui implements ActionListener{
         Main.gameplay();
         break;
       case "Forfeit":
+        window.remove(gameMenu);
         if(Game.getBet() == 0){
           System.out.println("Please enter a bet first.");
           break;
@@ -284,6 +293,7 @@ public class Gui implements ActionListener{
         Main.gameplay();
         break; 
       case "DoubleD":
+        window.remove(gameMenu);
         Game.changeCash(Game.getBet());
         Game.userHit();
         while((Game.houseTotal < 16)){
@@ -294,11 +304,11 @@ public class Gui implements ActionListener{
         }
         Main.gameplay();
         break;
-      /*case "Next":
-        startMenu.setVisible(false);
+      case "Next":
+        window.remove(instructMenu);
         instructScreen = 1;
         Main.gameplay();
-        break;*/
+        break;
       case "Quit":
         window.dispose();
         break;
