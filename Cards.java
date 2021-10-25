@@ -9,6 +9,7 @@ public class Cards{
     private static int[][] cards = {{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13}};    
     private static int cardValue;
     private static int suitValue;
+    public static int suitColours;
 
     public static int getcards(){
 
@@ -40,6 +41,22 @@ public class Cards{
       }
 
       return cardValue;
+    }
+
+    public static int getSuitValue()
+    {
+      switch (suitValue)
+      {
+        case 0: case 1:
+          suitColours = 0;
+          break;
+        case 2: case 3:
+          suitColours = 1;
+          break;
+        default:
+          break;
+      }
+      return suitColours;
     }
 
     public static void resetCards()

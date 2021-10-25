@@ -211,7 +211,16 @@ public class Gui implements ActionListener{
       for(int i = 0; i < Game.houseCount; i++){
         JLabel housecardNumber = new JLabel(Integer.toString(Game.houseHand[i]));
         housecardNumber.setBounds(cardX+(cardGap*i), cardY, 200, 100);
-        housecardNumber.setForeground(Color.RED);
+        switch(Game.houseSuit[i]){
+          case 0:
+            housecardNumber.setForeground(Color.RED);
+            break;
+          case 1:
+            housecardNumber.setForeground(Color.BLACK);
+            break;
+          default:
+            break;
+        }
         housecardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
         gameMenu.add(housecardNumber);
       }
@@ -221,7 +230,16 @@ public class Gui implements ActionListener{
       for(int i = 0; i < Game.userCount; i++){
         JLabel usercardNumber = new JLabel(Integer.toString(Game.userHand[i]));
         usercardNumber.setBounds(cardX+(cardGap*i), cardY+130, 200, 100);
-        usercardNumber.setForeground(Color.RED);
+        switch(Game.userSuit[i]){
+          case 0:
+            usercardNumber.setForeground(Color.RED);
+            break;
+          case 1:
+            usercardNumber.setForeground(Color.BLACK);
+            break;
+          default:
+            break;
+        }
         usercardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
         gameMenu.add(usercardNumber);
       }
@@ -236,7 +254,7 @@ public class Gui implements ActionListener{
 
     loseMenu.setBackground(light_blue);
 
-    JLabel title = tag(loseMenu, "YOU\'RE BROKE", windowWidth/2-100, windowLength/2-75, 500, 100);
+    JLabel title = tag(loseMenu, "YOU\'RE BROKE", windowWidth/2-137, windowLength/2-75, 500, 100);
     title.setForeground(Color.WHITE);
     title.setFont(new Font("Serif", Font.BOLD, titlefontSize));
 

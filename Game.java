@@ -7,7 +7,9 @@ public class Game{
   public static int userCount;
   public static int houseCount;
   public static int [] userHand = {0, 0, 0, 0, 0};
+  public static int [] userSuit = {0, 0, 0, 0, 0};
   public static int [] houseHand = {0 ,0 ,0 ,0 ,0};
+  public static int [] houseSuit = {0 ,0 ,0 ,0 ,0};
   public static int uTotal;
   public static int hTotal;
   public static boolean userWon;
@@ -74,21 +76,27 @@ public class Game{
   public static void userHit()
   {
     user.setHand(userHand);
+    user.setSuits(userSuit);
     user.setCount(userCount);
     user.setPlayerCards();
+    user.setPlayerSuits();
     userHand = user.getPlayerHand();
     userCount = user.getPlayerCount();
     userTotal = user.getPlayerTotal();
+    userSuit = user.getPlayerSuits();
   }
 
   public static void houseHit()
   {
     house.setHand(houseHand);
+    house.setSuits(houseSuit);
     house.setCount(houseCount);
-    house.setPlayerCards();    
+    house.setPlayerCards();
+    house.setPlayerSuits();    
     houseHand = house.getPlayerHand();
     houseCount = house.getPlayerCount();
     houseTotal = house.getPlayerTotal();
+    houseSuit = house.getPlayerSuits();
   }
 
   public static void resetVar()
@@ -97,6 +105,8 @@ public class Game{
     {
       userHand[x] = 0;
       houseHand[x] = 0;
+      houseSuit[x] = 0;
+      userSuit[x] = 0;
     }
     houseCount = 0;
     userCount = 0;

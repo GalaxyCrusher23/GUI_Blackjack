@@ -4,6 +4,7 @@ import java.util.stream.*;
 public class Player
 {
   public static int [] playerHand;
+  public static int [] playerSuitHand;
   private static int playerCount;
   private double playerBet;
   private int playerTotal;
@@ -32,6 +33,21 @@ public class Player
   public void setPlayerCards()
   {
     playerHand[playerCount] = Cards.getcards();
+  }
+
+  public void setSuits(int[] hand)
+  {
+    playerSuitHand = hand;
+  }
+
+  public void setPlayerSuits()
+  {
+    playerSuitHand[playerCount] = Cards.getSuitValue();
+  }
+
+  public int[] getPlayerSuits()
+  {
+    return playerSuitHand;
   }
 
   public int getPlayerTotal()
