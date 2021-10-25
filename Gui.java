@@ -211,7 +211,6 @@ public class Gui implements ActionListener{
       for(int i = 0; i < Game.houseCount; i++){
         JLabel housecardNumber = new JLabel(Integer.toString(Game.houseHand[i]));
         housecardNumber.setBounds(cardX+(cardGap*i), cardY, 200, 100);
-        switch()
         housecardNumber.setForeground(Color.RED);
         housecardNumber.setFont(new Font("Serif", Font.PLAIN, cardfontSize));
         gameMenu.add(housecardNumber);
@@ -236,6 +235,14 @@ public class Gui implements ActionListener{
     loseMenu.setLayout(null);
 
     loseMenu.setBackground(light_blue);
+
+    JLabel title = tag(loseMenu, "YOU\'RE BROKE", windowWidth/2-100, windowLength/2-75, 500, 100);
+    title.setForeground(Color.WHITE);
+    title.setFont(new Font("Serif", Font.BOLD, titlefontSize));
+
+    JButton quit = button(loseMenu, "Quit", windowWidth/2-50, windowLength/2+75, 100, 50, true);
+    quit.setBackground(dark_blue);
+    quit.setForeground(Color.WHITE);
 
     loseMenu.setVisible(true);
   }
@@ -285,6 +292,11 @@ public class Gui implements ActionListener{
           while(Game.houseTotal < 16){
             Game.houseHit();
           }
+          if(Game.cash <= 0){
+            screen = 3;
+            Main.gameplay();
+            break;
+          }
           if(Game.didWin()){
             Game.returnCash(1);
           }
@@ -302,6 +314,11 @@ public class Gui implements ActionListener{
         forDown = false;
         while(Game.houseTotal < 16){
           Game.houseHit();
+        }
+        if(Game.cash <= 0){
+            screen = 3;
+            Main.gameplay();
+            break;
         }
         if(Game.didWin()){
           Game.returnCash(1);
@@ -335,6 +352,11 @@ public class Gui implements ActionListener{
         Game.userHit();
         while((Game.houseTotal < 16)){
           Game.houseHit();
+        }
+        if(Game.cash <= 0){
+            screen = 3;
+            Main.gameplay();
+            break;
         }
         if(Game.didWin()){
           Game.returnCash(2);

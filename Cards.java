@@ -7,28 +7,23 @@ public class Cards{
     private static Random rand = new Random();
     
     private static int[][] cards = {{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13},{1,2,3,4,5,6,7,8,9,10,11,12,13}};    
-    private static int cardValue = 0;
-    private static int suitValue = 0;
+    private static int cardValue;
+    private static int suitValue;
 
-    public static void cCards(int[] cards)
-    {
-      while (cards[cardValue] == 0){
-          cardValue = rand.nextInt(13); 
-      }
-      cards[cardValue] = 0;
-    }
-    
-    public static int getcards() {
+    public static int getcards(){
 
       cardValue = rand.nextInt(13);
       suitValue = rand.nextInt(4);
 
 
-      while (cards[suitValue][cardValue] == 0){
+      while (cards[suitValue][cardValue] == -1){
         cardValue = rand.nextInt(13); 
+        suitValue = rand.nextInt(4);
       }
 
-      cards[suitValue][cardValue] = 0;
+      cards[suitValue][cardValue] = -1;
+      
+      cardValue = cardValue+1;
 
       switch (cardValue)
       {

@@ -17,6 +17,9 @@ class Main{
       case 2:
         Gui.instruct();
         break;
+      case 3:
+        Gui.lose();
+        break;
       default:
         break;
     }

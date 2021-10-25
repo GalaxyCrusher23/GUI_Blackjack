@@ -108,11 +108,8 @@ public class Game{
 
   public static void dealCards()
   {
-    for (int x = 0; x < 2; x++)
-    {
-      userHit();
-    }
+    userHit();
+    userHit();
     houseHit();
-    
   }
 }
