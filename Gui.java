@@ -290,7 +290,18 @@ public class Gui implements ActionListener{
       case "Enter":
         window.remove(gameMenu);
         Game.resetVar();
-        Game.setBet(bet.getText());
+        try{
+          Game.setBet(bet.getText());
+        } catch(NumberFormatException ex){
+          System.out.println("Please enter a proper bet.");
+          Main.gameplay();
+          break;
+        }
+        if(Game.getBet() <= 0 || Game.getBet() > Game.cash){
+          System.out.println("Please enter a reasonable bet.");
+          Main.gameplay();
+          break;
+        }
         Game.changeCash(Game.getBet());
         Game.dealCards();
         hitStand = true;
@@ -300,10 +311,6 @@ public class Gui implements ActionListener{
         break;
       case "Hit":
         window.remove(gameMenu);
-        if(Game.getBet() == 0){
-          System.out.println("Please enter a bet first.");
-          break;
-        }
         forDown = false;
         Game.userHit();
         if(Game.userTotal>21 || Game.userCount==5){
@@ -325,10 +332,6 @@ public class Gui implements ActionListener{
         break;
       case "Stand":
         window.remove(gameMenu);
-        if(Game.getBet() == 0){
-          System.out.println("Please enter a bet first.");
-          break;
-        }
         forDown = false;
         while(Game.houseTotal < 16){
           Game.houseHit();
@@ -347,10 +350,6 @@ public class Gui implements ActionListener{
         break;
       case "Forfeit":
         window.remove(gameMenu);
-        if(Game.getBet() == 0){
-          System.out.println("Please enter a bet first.");
-          break;
-        }
         forDown = false;
         hitStand = false;
         Game.returnCash(3);
@@ -360,10 +359,6 @@ public class Gui implements ActionListener{
         break; 
       case "DoubleD":
         window.remove(gameMenu);
-        if(Game.getBet() == 0){
-          System.out.println("Please enter a bet first.");
-          break;
-        }
         forDown = false;
         hitStand = false;
         Game.changeCash(Game.getBet());
