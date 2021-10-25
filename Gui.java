@@ -132,12 +132,56 @@ public class Gui implements ActionListener{
     txt5.setForeground(Color.WHITE);
     txt5.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
 
+    JLabel txt6 = tag(instructMenu, "- Each card is worth their value. Face cards are worth 10 points and Aces could be worth either 11", rulesX, rulesY, 600, 150);
+    txt6.setForeground(Color.WHITE);
+    txt6.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt6part2 = tag(instructMenu, "  or 1 points.", rulesX, rulesY+12, 600, 150);
+    txt6part2.setForeground(Color.WHITE);
+    txt6part2.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt7 = tag(instructMenu, "- To win, you must have a hand bigger than the house’s without busting.", rulesX, rulesY+rulesGap, 600, 150);
+    txt7.setForeground(Color.WHITE);
+    txt7.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt8 = tag(instructMenu, "- Hit-To receive another card", rulesX, rulesY+(rulesGap*2), 600, 150);
+    txt8.setForeground(Color.WHITE);
+    txt8.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt9 = tag(instructMenu, "- Stand-Stop receiving cards", rulesX, rulesY+(rulesGap*3), 600, 150);
+    txt9.setForeground(Color.WHITE);
+    txt9.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt10 = tag(instructMenu, "- Double Down-Double your bet and take one hit and immediately stand.", rulesX, rulesY+(rulesGap*4), 600, 150);
+    txt10.setForeground(Color.WHITE);
+    txt10.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+    JLabel txt11 = tag(instructMenu, "- Forfeit-Forfeits your hand. Receive a third of your original bet.", rulesX, rulesY+(rulesGap*5), 600, 150);
+    txt11.setForeground(Color.WHITE);
+    txt11.setFont(new Font("Serif", Font.PLAIN, pgfontSize));
+
     if(instructScreen == 1){
       txt.setVisible(false);
       txt2.setVisible(false);
       txt3.setVisible(false);
       txt4.setVisible(false);
       txt5.setVisible(false);
+      txt6.setVisible(true);
+      txt6part2.setVisible(true);
+      txt7.setVisible(true);
+      txt8.setVisible(true);
+      txt9.setVisible(true);
+      txt10.setVisible(true);
+      txt11.setVisible(true);
+      next.setVisible(false);
+    } else {
+      txt.setVisible(true);
+      txt2.setVisible(true);
+      txt3.setVisible(true);
+      txt4.setVisible(true);
+      txt5.setVisible(true);
+      txt6.setVisible(false);
+      txt6part2.setVisible(false);
+      txt7.setVisible(false);
+      txt8.setVisible(false);
+      txt9.setVisible(false);
+      txt10.setVisible(false);
+      txt11.setVisible(false);
+      next.setVisible(true);
     }
 
     instructMenu.setVisible(true);
@@ -285,6 +329,7 @@ public class Gui implements ActionListener{
         window.remove(instructMenu);
         window.remove(gameMenu);
         screen = 0;
+        instructScreen = 0;
         Main.gameplay();
         break;
       case "Enter":
