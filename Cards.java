@@ -45,11 +45,15 @@ public class Cards{
           break;
       }
 
+      //Returns card value
       return cardValue;
     }
 
     public static int getSuitValue()
     {
+      //Gets suit value from previous method
+      
+      //Checks if the suit was black or red
       switch (suitValue)
       {
         case 0: case 1:
@@ -61,11 +65,14 @@ public class Cards{
         default:
           break;
       }
+      //Returns suitcolour
       return suitColours;
     }
 
     public static void resetCards()
+      //Resets the deck of cards
     {
+      //Creates a for loop that resets each array in the 2D array
       for (int x = 0; x < 4; x++)
       {
         for (int y = 0; y < 13; y++)

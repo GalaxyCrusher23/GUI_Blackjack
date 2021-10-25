@@ -3,9 +3,10 @@ import javax.swing.*;
 class Main{
   public static void main(String[] args) {
     Game game1 = new Game();
-    gameplay();
+    gameplay(); //initializes the screen once
   }
 
+  //allows us to dictate which screen should be uploaded
   public static void gameplay(){
     switch(Gui.screen){
       case 0:
